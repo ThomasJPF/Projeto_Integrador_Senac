@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordens de Serviço</title>
+    <!-- Incluindo Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Incluindo o CSS personalizado -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Incluindo ícones do Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading text-light py-4"> 
+                <i class="bi bi-speedometer2"></i> 
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="index.html" class="list-group-item list-group-item-action bg-dark text-light text-center"> 
+                    <i class="bi bi-house-door"></i>
+                </a>
+                <a href="ordens-servico.html" class="list-group-item list-group-item-action bg-dark text-light text-center"> 
+                    <i class="bi bi-file-earmark-text"></i>
+                </a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+            </nav>
+            <div class="container-fluid">
+                <h1 class="mt-4">Ordens de Serviço</h1>
+                <table class="table table-bordered table-striped mt-4">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Nome do Cliente</th>
+                            <th>Descrição do Problema</th>
+                            <th>Status</th>
+                            <th>Data de Abertura</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordensTable">
+                        <!-- Ordens de serviço serão inseridas aqui via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Incluindo Bootstrap JS e dependências -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Carregar cadastros do arquivo JSON
+        function carregarOrdens() {
+            fetch('cadastros.json')
+                .then(response => response.json())
+                .then(ordensServico => {
+                    const tabela = document.getElementById("ordensTable");
+                    tabela.innerHTML = ""; // Limpa a tabela antes de preencher
+
+                    ordensServico.forEach((ordem, index) => {
+                        const row = document.createElement("tr");
+
+                        const idCell = document.createElement("td");
+                        idCell.textContent = index + 1;
+                        row.appendChild(idCell);
+
+                        const nomeCell = document.createElement("td");
+                        nomeCell.textContent = ordem.nome;
+                        row.appendChild(nomeCell);
+
+                        const descricaoCell = document.createElement("td");
+                        descricaoCell.textContent = ordem.descricao_problema;
+                        row.appendChild(descricaoCell);
+
+                        const statusCell = document.createElement("td");
+                        statusCell.textContent = "Aberta";
+                        row.appendChild(statusCell);
+
+                        const dataCell = document.createElement("td");
+                        dataCell.textContent = ordem.dataCadastro;
+                        row.appendChild(dataCell);
+
+                        tabela.appendChild(row);
+                    });
+                })
+                .catch(error => console.error("Erro ao carregar ordens: ", error));
+        }
+
+        window.onload = carregarOrdens;
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+/* Estilo para o wrapper do menu lateral */
+#wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar-wrapper {
+    min-width: 60px;
+    max-width: 60px;
+    background-color: #343a40;
+    color: #fff;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    padding: 20px;
+}
+
+.sidebar-heading {
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.list-group-item {
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.list-group-item i {
+    font-size: 1.5rem;
+}
+
+.list-group-item-action:hover {
+    background-color: #495057;
+    color: #fff;
+}
+
+.toggled #sidebar-wrapper {
+    margin-left: -60px;
+}

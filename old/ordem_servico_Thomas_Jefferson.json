@@ -1,0 +1,15 @@
+{
+  "nome": "Thomas Jefferson Pereira Fiamett",
+  "telefone": "69984155943",
+  "endereco": "Maria Nunes Coelho",
+  "marca_pc": "Dell",
+  "modelo_pc": "G3",
+  "descricao_problema": "Computador esta travando e precisa ser formatado",
+  "aplicativos": [
+    "Google Chrome",
+    "Microsoft Office",
+    "Antivírus"
+  ],
+  "dataAbertura": "2024-09-05T02:22:44.786Z",
+  "status": "Fechada"
+}
